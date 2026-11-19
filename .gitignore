@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+data/
+*.sqlite*
+.env
+*.log
+report/*.aux
+report/*.toc
+report/*.out
+report/*.synctex.gz
+report/*.xdv

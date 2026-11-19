@@ -1,0 +1,15 @@
+digraph architecture {
+ graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.6", ranksep="0.6"];
+ node [shape=box, style="rounded,filled", fillcolor="#EFF5F3", color="#27594D", fontname="DejaVu Sans", fontsize=15, margin="0.22,0.17"];
+ edge [color="#596E67", fontname="DejaVu Sans", fontsize=12];
+ pc [label="Компьютер диспетчера\nБраузер · создание и контроль заявок"];
+ phone [label="Телефон техника\nБраузер · выполнение и комментарии"];
+ {rank=same; pc;phone;}
+ server [label="Сервер на компьютере\nWaitress → Flask\nСессия → права → проверка данных", fillcolor="#DCECE5"];
+ logic [label="Бизнес-правила\nПереходы статусов · проверка version\nЗаявка + событие в одной транзакции"];
+ db [label="SQLite\nusers · assets · tickets · events",shape=cylinder,fillcolor="#FCF2DD"];
+ pc -> server [label="HTTP / JSON"];
+ phone -> server [label="HTTP / JSON\nлокальная сеть"];
+ server -> logic;
+ logic -> db [label="SQL с параметрами"];
+}

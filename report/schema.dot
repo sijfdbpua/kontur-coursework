@@ -1,0 +1,13 @@
+digraph schema {
+ graph [rankdir=LR,bgcolor="white",nodesep="0.7",ranksep="1.0",pad="0.25"];
+ node [shape=record,fontname="DejaVu Sans",fontsize=13,style=filled,fillcolor="#F1F6F3",color="#27594D",margin="0.18,0.13"];
+ edge [fontname="DejaVu Sans",fontsize=11,color="#596E67"];
+ users [label="{users — пользователи|id · PK\lusername · UNIQUE\lname\lrole\lpassword_hash\l}"];
+ assets [label="{assets — оборудование|id · PK\lname\llocation\linventory_no · UNIQUE\l}"];
+ tickets [label="{tickets — заявки|id · PK\ltitle / description\lasset_id · FK\lassignee_id · FK, NULL\lcreated_by · FK\lpriority / status\lresolution\lcreated_at / updated_at\lversion\l}"];
+ events [label="{events — история|id · PK\lticket_id · FK\lactor_id · FK\lkind / body\lcreated_at\l}"];
+ users -> tickets [label="1 : N\nавтор / исполнитель"];
+ assets -> tickets [label="1 : N"];
+ tickets -> events [label="1 : N"];
+ users -> events [label="1 : N\nавтор события", constraint=false];
+}
